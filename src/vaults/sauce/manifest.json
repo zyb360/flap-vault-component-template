@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 2,
+  "mode": "mini-app",
+  "appModel": "standalone",
+  "slug": "sauce",
+  "artifactId": "vaultui_sauce_01M607791KRMD5FVJB758SRFT4",
+  "name": "sauce",
+  "displayTitle": {
+    "zh": "SAUCE 发射台",
+    "en": "SAUCE Launchpad"
+  },
+  "match": {
+    "bindings": []
+  },
+  "walletChains": [
+    97
+  ],
+  "i18n": [
+    "en",
+    "zh",
+    "ko"
+  ],
+  "endpoints": "https://bsc-testnet-debug.butterfly.army/fsi/v1",
+  "walletContracts": [
+    {
+      "id": "launchpad",
+      "chainId": 97,
+      "address": "0xE3254AB9Ae356F1a520640E97b0de0f7a79cc915",
+      "allow": [
+        "function purchaseIDO(uint256 preparationIndex, address idoToken, uint128 count, uint256 amount) payable"
+      ],
+      "read": [
+        "function acceptQuoteTokens(uint256) view returns (address)",
+        "function isAcceptQuoteToken(address quoteToken) view returns (bool)",
+        "function list() view returns (((bytes32 tokenDeploySalt, address tokenAddress, ((string name, string symbol, string meta, uint256 totalSupply, bytes32 salt, address quoteToken, uint8 dexId, uint256 poolQuote, uint256 poolToken, uint16 buyTaxRate, uint16 sellTaxRate, uint32 taxDuration, uint32 antiFarmerDuration, (uint8 feeType, uint16 bps, bytes configData)[] feeConfigs, uint8 antiSniperMode, uint32 exemptWindow, address[] exemptAddrs, uint256 creatorBuyQuote, bytes32 extensionID, bytes extensionData, address commissionReceiver) p, (uint8 target, address strategy, uint128 amount, bytes configData) distribution, (uint256 minOutputAmount, bytes permitData) creatorBuy) poolLaunchParams) project, (uint256 totalAmount, uint256 unitEnergyPrice, uint256 unitCashPrice, uint256 amountPerUnit, uint128 startTime, uint128 endTime, uint128 purchaseLimit, uint128 totalStock) config, (uint128 totalSoldCount, bool isFired) state)[])",
+        "function preparationIndexPlusOne(address) view returns (uint256)"
+      ],
+      "maxValueWei": "100000000000000000000000",
+      "resolvedContracts": [
+        {
+          "id": "ido-preparation",
+          "resolver": "function preparationAt(uint256 i) view returns (address)",
+          "read": [
+            "function creator() view returns (address)",
+            "function creatorBuyRefunded() view returns (bool)",
+            "function factory() view returns (address)",
+            "function flapPortal() view returns (address)",
+            "function hasClaimed(address) view returns (bool)",
+            "function info() view returns (((bytes32 tokenDeploySalt, address tokenAddress, ((string name, string symbol, string meta, uint256 totalSupply, bytes32 salt, address quoteToken, uint8 dexId, uint256 poolQuote, uint256 poolToken, uint16 buyTaxRate, uint16 sellTaxRate, uint32 taxDuration, uint32 antiFarmerDuration, (uint8 feeType, uint16 bps, bytes configData)[] feeConfigs, uint8 antiSniperMode, uint32 exemptWindow, address[] exemptAddrs, uint256 creatorBuyQuote, bytes32 extensionID, bytes extensionData, address commissionReceiver) p, (uint8 target, address strategy, uint128 amount, bytes configData) distribution, (uint256 minOutputAmount, bytes permitData) creatorBuy) poolLaunchParams) project, (uint256 totalAmount, uint256 unitEnergyPrice, uint256 unitCashPrice, uint256 amountPerUnit, uint128 startTime, uint128 endTime, uint128 purchaseLimit, uint128 totalStock) config, (uint128 totalSoldCount, bool isFired) state))",
+            "function isCapitalVerified() view returns (bool)",
+            "function isRefundable() view returns (bool)",
+            "function projectDescription() view returns (string titleZh, string titleEn, string summaryZh, string summaryEn)",
+            "function purchasedOf(address) view returns (uint256 amount, uint256 energyAmount, uint128 count, bool isRedeemed)",
+            "function tokenAddress() view returns (address)"
+          ],
+          "allow": [
+            "function claimIDO()",
+            "function launchToken()",
+            "function redeemIDO()",
+            "function refundCreatorBuy()"
+          ]
+        },
+        {
+          "id": "launch-quote-token",
+          "resolver": "function acceptQuoteTokens(uint256 i) view returns (address)",
+          "read": [
+            "function balanceOf(address account) view returns (uint256)",
+            "function allowance(address owner,address spender) view returns (uint256)",
+            "function decimals() view returns (uint8)"
+          ],
+          "allow": [
+            "function approve(address spender,uint256 amount) returns (bool)"
+          ],
+          "approvalSpenders": [
+            "0xE3254AB9Ae356F1a520640E97b0de0f7a79cc915",
+            "0x000042108465206185A077Edc3F3fd2b49060000",
+            "0xBF2Ca33C375A4bF865feA4bc11B570511a5586A8"
+          ],
+          "maxApprovalWei": "1000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "relation",
+      "chainId": 97,
+      "address": "0x23844242c1FeDB294Ce22F492cD5F9e330F66c38",
+      "read": [
+        "function childrenCount(address parent) view returns (uint256)",
+        "function childrenOf(address parent) view returns (address[])",
+        "function parentOf(address) view returns (address)",
+        "function root() view returns (address)",
+        "function timestemp() view returns (uint256)"
+      ]
+    },
+    {
+      "id": "energy-token",
+      "chainId": 97,
+      "address": "0xF965F2f986F09C06De80c676985a8D63E669795f",
+      "read": [
+        "function balanceOf(address owner) view returns (uint256)"
+      ]
+    },
+    {
+      "id": "stakefarm",
+      "chainId": 97,
+      "address": "0xf95fBc44ac4AA8d735473AE3E8040CF1A43807D0",
+      "allow": [
+        "function bindParent(address parent)",
+        "function stake(address token, uint256 amount)",
+        "function unstaked(address token, uint256 amount)"
+      ],
+      "read": [
+        "function rewardDistributorFactory() view returns (address)",
+        "function accountInfoOf(address account, address token) view returns (((uint256 staked, uint256 debt, uint256 totalEarned) staticReward, (uint256 staked, uint256 debt, uint256 totalEarned) teamReward, uint256 totalUsedReward, uint256 rewardBalance, uint256 freezeQuota, bool isActive))",
+        "function accountPendingEnergy(address account) view returns (uint256)",
+        "function pools() view returns ((bool isDisable, address token, (uint48 apd, uint256 totalStaked, uint256 rewardPershare, uint256 totalEarnReward) staticState, (uint48 apd, uint256 totalStaked, uint256 rewardPershare, uint256 totalEarnReward) teamState, uint256 lastSettlementTime)[])",
+        "function stakeInfoOf(address poolToken, address account) view returns (uint256 userStake, uint256 teamStake, uint256 poolTotal)",
+        "function energyStakeThreshold() view returns (uint256)"
+      ],
+      "resolvedContracts": [
+        {
+          "id": "stake-pool-token",
+          "resolver": "function poolAt(uint256 i) view returns (address)",
+          "allow": [
+            "function approve(address spender,uint256 amount) returns (bool)"
+          ],
+          "read": [
+            "function symbol() view returns (string)",
+            "function decimals() view returns (uint8)",
+            "function balanceOf(address owner) view returns (uint256)",
+            "function allowance(address owner,address spender) view returns (uint256)",
+            "function name() view returns (string)"
+          ],
+          "approvalSpenders": [
+            "0xf95fBc44ac4AA8d735473AE3E8040CF1A43807D0"
+          ],
+          "maxApprovalWei": "10000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "reward-distributor-factory",
+      "chainId": 97,
+      "address": "0x84561Bd8cBe19a59E29f6D7C09DEcF59E716Aa91",
+      "read": [
+        "function stakeFarm() view returns (address)",
+        "function distributorCount() view returns (uint256)"
+      ],
+      "resolvedContracts": [
+        {
+          "id": "reward-distributor",
+          "resolver": "function distributors(uint256 index) view returns (address)",
+          "read": [
+            "function rewardToken() view returns (address)",
+            "function rewardTokenInfo() view returns (string name, string symbol, uint8 decimals)",
+            "function metaCID() view returns (string)",
+            "function startTime() view returns (uint64)",
+            "function endTime() view returns (uint64)",
+            "function rewardPerDay() view returns (uint256)",
+            "function totalWeight() view returns (uint256)",
+            "function isFunded() view returns (bool)",
+            "function poolInfoOf(address poolToken) view returns (uint256 weight,uint256 rewardPerShare,uint256 accountedReward,uint256 unallocatedReward,uint256 poolRemainder,bool configured,bool finalized)",
+            "function pendingRewardOf(address poolToken,address user) view returns (uint256)"
+          ],
+          "allow": [
+            "function claim(address poolToken) returns (uint256 amount)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preparation-factory",
+      "chainId": 97,
+      "address": "0xBF2Ca33C375A4bF865feA4bc11B570511a5586A8",
+      "read": [
+        "function flapTokenCreationCodeHash() view returns (bytes32)",
+        "function launchPad() view returns (address)",
+        "function portal() view returns (address)"
+      ]
+    },
+    {
+      "id": "launch-portal",
+      "chainId": 97,
+      "address": "0x000042108465206185A077Edc3F3fd2b49060000",
+      "allow": [
+        "function newLauncher(address launcherFactory,bytes data) payable returns (address launcher)"
+      ],
+      "read": [
+        "function SALT_LOCK_FEE() view returns (uint256)",
+        "function graduationFloorV2((address quoteToken,uint256 quotePriceUsd,uint256 poolQuote,uint256 poolToken,uint256 totalSupply,address vaultFactory) params) view returns ((bool meetsFloor,uint256 floorUsdWad,uint256 quoteUsdWad,uint16 multiplierBps,bool meetsCreateFloor,uint256 createFloorUsdWad) result)",
+        "function launchQuoteConfig(uint8 kind,address quoteToken) view returns (bool enabled,uint256 quotePriceUsd)",
+        "function quoteTokenCreationDisabled(address quoteToken) view returns (bool)",
+        "function launcherFactoryMultiplier(address factory) view returns (bool enabled,uint16 multiplierBps)"
+      ],
+      "maxValueWei": "100000000000000000000000"
+    }
+  ]
+}

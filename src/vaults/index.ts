@@ -90,6 +90,12 @@ export const vaultModules: Record<string, VaultModule> = {
     loadManifest: () => import("./vault-demo/manifest.json") as Promise<{ default: VaultManifest }>,
     loadI18n: () => import("./vault-demo/i18n.json") as Promise<{ default: Record<string, Record<string, string>> }>,
   },
+  "sauce": {
+    folderName: "sauce",
+    loadComponent: () => import("./sauce/Component"),
+    loadManifest: () => import("./sauce/manifest.json") as Promise<{ default: VaultManifest }>,
+    loadI18n: () => import("./sauce/i18n.json") as Promise<{ default: Record<string, Record<string, string>> }>,
+  },
 };
 
 export function getVaultFolderNames() {
